@@ -1,7 +1,12 @@
-<%= button_to "Create New User", register_path, method: :get %>
-<section class='existing-users'>
+<% if session[:user_id] %>
+<% else %>
+  <%= button_to "Create New User", register_path, method: :get %>
+<% end %>
+<% if session[:user_id] %>
+  <section class='existing-users'>
     <p>Existing Users: </p>
     <% @users.each do |user| %>
-        <li><%= link_to user.email, user_path(user.id) %></li>
+      <li><%= user.email %></li>
     <% end %>
-</section>
+  </section>
+<% end %>
